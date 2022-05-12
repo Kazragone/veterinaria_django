@@ -1,0 +1,48 @@
+{% extends 'myapp/index.html' %} {% block content %}
+<div class="title">
+  <h1>Animales</h1>
+  <a href="{% url 'crear_animal' %}">Crear animal</a>
+</div>
+{% include 'forms/alert.html' %} {% if animales|length == 0 %}
+<div class="alert alert-info">No hay animales cargados</div>
+
+{% else %}
+
+<table class="table">
+  <thead>
+    <th>id</th>
+    <th>Especie</th>
+    <th>Tipo</th>
+    <th>Nombre</th>
+    <th>Edad</th>
+    <th>Duenio</th>
+    <th></th>
+  </thead>
+  <tbody>
+    {% for animal in animales %}
+    <tr>
+      <td>{{ animal.id }}</td>
+      <td>{{ animal.get_especie_display }}</td>
+      <td>{{ animal.tipo }}</td>
+      <td>{{ animal.nombre }}</td>
+      <td>{{ animal.edad }}</td>
+      <td>{{ animal.duenio }}</td>
+      <td>
+        <div class="form-actions">
+          <a href="{% url 'animal' animal.id %}">
+            <i class="fa fa-search"></i>
+          </a>
+          <a href="{% url 'editar_animal' animal.id %}">
+            <i class="fa fa-pen-to-square text-info"></i>
+          </a>
+          <a href="{% url 'eliminar_animal' animal.id %}">
+            <i class="fa fa-trash text-danger"></i>
+          </a>
+        </div>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endif %} {% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'myapp/index.html' %} {% block content %}
+
+<div class="title">
+  <h1>Clientes</h1>
+  <p>
+    <a href="{% url 'crear_cliente' %}">Crear cliente</a>
+  </p>
+</div>
+{% include 'forms/alert.html' %} {% if clientes|length == 0 %}
+<div class="alert alert-info">No hay clientes cargados</div>
+
+{% else %}
+
+<table class="table">
+  <thead>
+    <th>Tipo documento</th>
+    <th>Documento</th>
+    <th>Fecha de nacimiento</th>
+    <th>Nombre</th>
+    <th>Apellido</th>
+    <th>Direccion</th>
+    <th>Activo</th>
+    <th></th>
+  </thead>
+  <tbody>
+    {% for cliente in clientes %}
+    <tr>
+      <td>{{ cliente.get_tipo_documento_display }}</td>
+      <td>{{ cliente.documento }}</td>
+      <td>{{ cliente.fecha_nacimiento }}</td>
+      <td>{{ cliente.nombre }}</td>
+      <td>{{ cliente.apellido }}</td>
+      <td>{{ cliente.direccion }}</td>
+      {% if cliente.activo %}
+      <td>Esta activo</td>
+      {% else %}
+      <td>No esta activo</td>
+      {% endif %}
+      <td>
+        <div class="form-actions">
+          <a href="{% url 'cliente' cliente.documento %}">
+            <i class="fa fa-search"></i>
+          </a>
+          <a href="{% url 'editar_cliente' cliente.id %}">
+            <i class="fa fa-pen-to-square text-info"></i>
+          </a>
+          <a href="{% url 'eliminar_cliente' cliente.documento %}">
+            <i class="fa fa-trash text-danger"></i>
+          </a>
+        </div>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endif %} {% endblock %}

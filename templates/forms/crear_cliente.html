@@ -1,0 +1,15 @@
+{% extends 'myapp/index.html' %} {% block content %}
+
+<h1>
+  {% if mode == 'EDIT' %} Editar cliente {% else %} Crear cliente {% endif %}
+</h1>
+
+<form action="" method="post">
+  {% csrf_token %}
+
+  <div class="form-container">{{ form.as_p }}</div>
+
+  <button type="submit" class="btn btn-secondary mt-3">Guardar</button>
+</form>
+
+{% endblock content %}

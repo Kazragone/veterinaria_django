@@ -1,0 +1,57 @@
+{% extends 'myapp/index.html' %} {% block content %}
+
+<style>
+  .wrapper {
+    max-width: fit-content;
+    white-space: no-wrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+</style>
+
+<div class="title">
+  <h1>Registros de consultas</h1>
+  <p>
+    <a href="{% url 'crear_consulta' %}">Registrar una consulta</a>
+  </p>
+</div>
+
+{% include 'forms/alert.html' %} {% if consultas|length == 0 %}
+<div class="alert alert-info">No hay consultas</div>
+
+{% else %}
+
+<table class="table">
+  <thead>
+    <th>Fecha de consulta</th>
+    <th>Nombre del animal</th>
+    <th>Duenio del animal</th>
+    <th>Enfermedad</th>
+    <th>Observaciones</th>
+    <th></th>
+  </thead>
+
+  <tbody>
+    {% for consulta in consultas %}
+    <tr>
+      <td>{{ consulta.fecha_de_consulta }}</td>
+      <td>{{ consulta.animal }}</td>
+      <td>{{ consulta.animal.duenio }}</td>
+      <td>{{ consulta.enfermedad }}</td>
+      <td><div class="wrapper">{{ consulta.observacion }}</div></td>
+      <td>
+        <div class="form-actions">
+          <a href="{% url 'editar_consulta' consulta.id %}">
+            <i class="fa fa-pen-to-square text-info"></i>
+          </a>
+          <a href="{% url 'eliminar_consulta' consulta.id %}">
+            <i class="fa fa-trash text-danger"></i>
+          </a>
+        </div>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endif %} {% endblock %}

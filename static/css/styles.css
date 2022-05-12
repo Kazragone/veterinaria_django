@@ -1,0 +1,42 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+nav {
+  padding: 1rem;
+  height: 80px;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 1rem 0;
+}
+
+.title h1 {
+  display: inline;
+}
+
+.form-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.alert-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.alert-container > p {
+  margin: 0;
+  line-height: 0;
+}
+
+.form-container {
+  max-width: 500px;
+}

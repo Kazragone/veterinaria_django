@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Dollar</h1>
+    <p>Venta: <strong>{{data.sale_price}}</strong></p>
+    <p>Compra: <strong>{{data.buy_price}}</strong></p>
+    <h3>Monedas</h3>
+    <ul>
+      {% for moneda in monedas %}
+      <li>{{ moneda }}</li>
+      {% endfor %}
+    </ul>
+  </body>
+</html>

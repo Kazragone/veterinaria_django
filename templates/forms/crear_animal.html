@@ -1,0 +1,12 @@
+{% extends 'myapp/index.html' %} {% block content %}
+
+<h1>
+  {% if mode == 'EDIT' %} Editar animal {% else %} Crear animal {% endif %}
+</h1>
+
+<form action="" method="post">
+  {% csrf_token %} {{ form.as_p }}
+  <button type="submit" class="btn btn-secondary mt-3">Guardar</button>
+</form>
+
+{% endblock content %}
